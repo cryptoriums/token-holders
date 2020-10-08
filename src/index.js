@@ -12,12 +12,6 @@ import * as serviceWorker from './serviceWorker';
 
 const moment = require('moment');
 
-const setLoaderState = function (name, state) {
-  let loaders = this.state.loaders
-  loaders[name] = state
-  this.setState({ loaders: loaders })
-}
-
 const loadState = function (name) {
   let value = []
   try {
@@ -32,6 +26,12 @@ class FormsManager extends React.Component {
   saveState = (name, value) => {
     localStorage.setItem(name, JSON.stringify(value));
     this.setState({ [name]: value });
+  }
+
+  setLoaderState = function (name, state) {
+    let loaders = this.state.loaders
+    loaders[name] = state
+    this.setState({ loaders: loaders })
   }
 
 
@@ -112,7 +112,7 @@ class Main extends FormsManager {
     let singles = async () => {
       let name = "SINGLE TOKENS"
 
-      setLoaderState(name, true)
+      this.setLoaderState(name, true)
 
       let response = await ContractHolders(tokens, setup.fromDate, setup.bloxyAPIkey, setup.etherscanAPIkey)
       const list = [...this.state.result];
@@ -122,14 +122,14 @@ class Main extends FormsManager {
       })
       this.setState({ result: list })
 
-      setLoaderState(name, false)
+      this.setLoaderState(name, false)
     }
     singles()
 
     let balancer = async () => {
       let name = "BALANCER"
 
-      setLoaderState(name, true)
+      this.setLoaderState(name, true)
 
       let response = await BalancerContracts(tokens, setup.fromDate, setup.bloxyAPIkey, setup.etherscanAPIkey)
       const list = [...this.state.result];
@@ -139,14 +139,14 @@ class Main extends FormsManager {
       })
       this.setState({ result: list })
 
-      setLoaderState(name, false)
+      this.setLoaderState(name, false)
     }
     balancer()
 
     let uniswap = async () => {
       let name = "UNISWAP"
 
-      setLoaderState(name, true)
+      this.setLoaderState(name, true)
 
       let response = await UniswapContracts(tokens, setup.fromDate, setup.bloxyAPIkey, setup.etherscanAPIkey)
       const list = [...this.state.result];
@@ -156,7 +156,7 @@ class Main extends FormsManager {
       })
       this.setState({ result: list })
 
-      setLoaderState(name, false)
+      this.setLoaderState(name, false)
     }
     uniswap()
 
