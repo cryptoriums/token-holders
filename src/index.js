@@ -206,7 +206,7 @@ class Main extends FormsManager {
                   return <div style={{ clear: 'both' }}>
                     <a style={{ width: 24 + 'em', display: 'block', float: 'left' }} target="_blank" rel="noopener noreferrer" href={"https://etherscan.io/address/" + contract.address}>{contract.address}</a>
                     <div style={{ width: 8 + 'em', float: 'left' }}>{contract.type}</div>
-                    {contract.name}<br />
+                    {contract.name} {contract.annotation}<br />
                     <label>first call:</label>{moment(contract.firstCall).fromNow()}<br />
                     <label>last call:</label>{moment(contract.lastCall).fromNow()}
                     <br /><br />
