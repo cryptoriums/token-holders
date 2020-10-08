@@ -1,4 +1,26 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## A simple web gui tool to get tokens filtered by a contract first call time.
+
+ From bloxy
+  - -> get all token holders for a given address(single token, uniswap pool, balancer pool etc.)
+  - -> Filter all wallet address
+  - -> Remove all contracts before the requested date
+
+ From etherscan
+  - -> Query for the contract name(optional)
+
+In the token input field add tokens of interest and the app will find all pairs on the popular exchanges.
+for example the following entry will find all token holders for each token and all token pairs like `DAI-BAL`, `DAI-WETH` and `BAL-WETH`
+
+| Name  | Address |
+| ------------- | ------------- |
+| DAI  | 0x6b175474e89094c44da98b954eedeac495271d0f  |
+| BAL  | 0xba100000625a3754423978a60c9317c58a424e3d  |
+| WETH  | 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2  |
+
+
+
+--------
+
 
 ## Available Scripts
 
