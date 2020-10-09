@@ -201,7 +201,7 @@ class Main extends FormsManager {
             <h2>{provider.providerName}</h2><br />
             {provider.tokenHolders.map((token) => {
               return <div>
-                {(token.contracts.length > 0 || token.error !== undefined) && <h4 style={{ margin: 0 }}>  {token.name} < br /></h4>}
+                {((token.contracts !== undefined && token.contracts.length > 0) || token.error !== undefined) && <h4 style={{ margin: 0 }}>  {token.name} < br /></h4>}
                 {token.error !== undefined ? < div > {token.error}</div> : token.contracts.map((contract) => {
                   return <div style={{ clear: 'both' }}>
                     <a style={{ width: 24 + 'em', display: 'block', float: 'left' }} target="_blank" rel="noopener noreferrer" href={"https://etherscan.io/address/" + contract.address}>{contract.address}</a>
