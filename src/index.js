@@ -81,7 +81,7 @@ class TokensInput extends FormsManager {
             <div key={"box" + i} className="box">
               <label>{tokens.length - 1 === i ? <button onClick={() => this.handleAddClick({ name: "", address: "" }, "tokens")}>Add</button> : '\u00A0'}</label>
               <input key={"name" + i} name="name" placeholder="Token Name" value={x.name} onChange={e => this.handleInputChange(e, i, "tokens")} />
-              <input key={"address" + i} name="address" placeholder="Token address" value={x.address} onChange={e => this.handleInputChange(e, i, "tokens")} />
+              <input key={"address" + i} name="address" style={{ width: "350px" }} placeholder="Token address" value={x.address} onChange={e => this.handleInputChange(e, i, "tokens")} />
               {tokens.length !== 1 && <button className="mr10" onClick={e => this.handleRemoveClick(i, "tokens")}>Remove</button>}
 
             </div>
@@ -113,8 +113,8 @@ class Main extends FormsManager {
       }
       tokens.push(new Token(token.name, token.address))
     })
-    if (hasEmpty != undefined) {
-      alert("tokens with empty name or addres are ignored")
+    if (hasEmpty !== undefined) {
+      alert("tokens with empty name or address are ignored")
     }
 
     let singles = async () => {

@@ -8,7 +8,7 @@ export async function Contracts(tokens, fromDate, bloxyAPIkey, etherscanAPIkey) 
     let poolTokens = []
     let error
     let errors = await Promise.all(tokenPairs.map(async (pair) => {
-        let tokenContracts = new TokenContract(pair[0].name + "-" + pair[1].name)
+        let tokenContract = new TokenContract(pair[0].name + "-" + pair[1].name)
         try {
             let token = getCreate2Address(
                 FACTORY_ADDRESS,
@@ -25,9 +25,9 @@ export async function Contracts(tokens, fromDate, bloxyAPIkey, etherscanAPIkey) 
             poolTokens.push(new Token(`${pair[1].name}-${pair[0].name}`, tokenSwapped))
         } catch (e) {
             error = true
-            tokenContracts.SetError(e.message)
-            return tokenContracts
+            tokenContract.SetError(e.message)
         }
+        return tokenContract
     }));
 
     if (error !== undefined) {
