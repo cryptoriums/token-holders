@@ -200,18 +200,18 @@ class Main extends FormsManager {
       <input type="submit" value="Submit" onClick={e => this.handleSubmit(e)} />
       {
         Object.entries(this.state.loaders).map(([name, isLoading]) => {
-          return isLoading && <h2 className="fade">{name}</h2>
+          return isLoading && <h2 key={name.replace(/ /g, '')} className="fade">{name}</h2>
         })
       }
       {
-        this.state.result.map((provider) => {
-          return <div>
-            <h2>{provider.providerName}</h2><br />
-            {provider.tokenHolders.map((token) => {
-              return <div>
-                {(token.contracts.length > 0 || token.error !== undefined) && <h4 style={{ margin: 0 }}>  {token.name} < br /></h4>}
-                {token.error !== undefined ? < div > {token.error}</div> : token.contracts.map((contract) => {
-                  return <div style={{ clear: 'both' }}>
+        this.state.result.map((provider, index) => {
+          return <div key={"prov-wrap-" + index}>
+            <h2 key={"prov-title-" + index}>{provider.providerName}</h2><br />
+            {provider.tokenHolders.map((token, index) => {
+              return <div key={"token-wrap-" + index} >
+                {(token.contracts.length > 0 || token.error !== undefined) && <h4 key={token.name.replace(/ /g, '')} style={{ margin: 0 }}>  {token.name} < br /></h4>}
+                {token.error !== undefined ? < div key={"token-err-" + index} > {token.error}</div> : token.contracts.map((contract, index) => {
+                  return <div key={"contract-wrap-" + index} style={{ clear: 'both' }}>
                     <a style={{ width: 24 + 'em', display: 'block', float: 'left' }} target="_blank" rel="noopener noreferrer" href={"https://etherscan.io/address/" + contract.address}>{contract.address}</a>
                     <div style={{ width: 8 + 'em', float: 'left' }}>{contract.type}</div>
                     {contract.name} {contract.annotation}<br />
